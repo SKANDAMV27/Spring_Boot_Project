@@ -6,7 +6,10 @@ import com.prapthi.crud_demo.repositry.CrudDemoRepositry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CrudDemoService {
@@ -65,5 +68,24 @@ public class CrudDemoService {
         }).orElse(null);
     }
 
+    public CrudDemoDto readById(int id){
+        System.out.println("Read By Id");
+
+//        return crudDemoRepositry.
+//                findById(id).
+//                map(this::toDto)
+//                .orElse(null);
+
+        CrudDemoEntity readById = crudDemoRepositry.findById(id).orElse(null);
+        return toDto(readById);
+
+    }
+
+    public List<CrudDemoDto> readAll(CrudDemoDto crudDemoDtor){
+        System.out.println("Read All The Data");
+        return crudDemoRepositry.findAll().stream().map(this::toDto).collect(Collectors.toList());
+
+
+    }
 
 }

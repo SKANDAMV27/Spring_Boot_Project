@@ -5,6 +5,8 @@ import com.prapthi.crud_demo.service.CrudDemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class CrudDemoController {
@@ -34,4 +36,25 @@ public class CrudDemoController {
 
         return crudDemoService.updateById(id, crudDemoDto);
     }
+
+    @GetMapping("/get/{id}")
+    public CrudDemoDto readById(@PathVariable int id){
+
+        System.out.println("Read The Data By Id.");
+        return crudDemoService.readById(id);
+
+    }
+
+    @GetMapping("/getAll")
+    public List<CrudDemoDto> readAll(@RequestBody CrudDemoDto crudDemoDto){
+
+        System.out.println("Controller is Running");
+        System.out.println("Real All The Data");
+        System.out.println(crudDemoDto);
+        return crudDemoService.readAll(crudDemoDto);
+
+    }
+
+
+
 }
