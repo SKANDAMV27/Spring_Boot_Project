@@ -93,24 +93,24 @@ public class CrudDemoService {
         }).orElse(null);
     }
 
-    public List<CrudDemoDto> updateByName(String name, CrudDemoDto crudDemoDto) {
-        List<CrudDemoEntity> entities = crudDemoRepositry.findByName(name);
-        if (entities.isEmpty()) {
-            System.out.println("No entity found with name: " + name);
-            return Collections.emptyList();
-        }
-
-        for (CrudDemoEntity exist : entities) {
-            if (crudDemoDto.getName() != null) exist.setName(crudDemoDto.getName());
-            if (crudDemoDto.getEmailId() != null) exist.setEmailId(crudDemoDto.getEmailId());
-            if (crudDemoDto.getSalary() != null) exist.setSalary(crudDemoDto.getSalary());
-            if (crudDemoDto.getDateOfBirth() != null) exist.setDateOfBirth(crudDemoDto.getDateOfBirth());
-            if (crudDemoDto.getMobileNumber() != null) exist.setMobileNumber(crudDemoDto.getMobileNumber());
-            crudDemoRepositry.save(exist);
-        }
-
-        return entities.stream().map(this::toDto).collect(Collectors.toList());
-    }
+//    public List<CrudDemoDto> updateByName(String name, CrudDemoDto crudDemoDto) {
+//        List<CrudDemoEntity> entities = crudDemoRepositry.updateByName(name);
+//        if (entities.isEmpty()) {
+//            System.out.println("No entity found with name: " + name);
+//            return Collections.emptyList();
+//        }
+//
+//        for (CrudDemoEntity exist : entities) {
+//            if (crudDemoDto.getName() != null) exist.setName(crudDemoDto.getName());
+//            if (crudDemoDto.getEmailId() != null) exist.setEmailId(crudDemoDto.getEmailId());
+//            if (crudDemoDto.getSalary() != null) exist.setSalary(crudDemoDto.getSalary());
+//            if (crudDemoDto.getDateOfBirth() != null) exist.setDateOfBirth(crudDemoDto.getDateOfBirth());
+//            if (crudDemoDto.getMobileNumber() != null) exist.setMobileNumber(crudDemoDto.getMobileNumber());
+//            crudDemoRepositry.save(exist);
+//        }
+//
+//        return entities.stream().map(this::toDto).collect(Collectors.toList());
+//    }
 
     public CrudDemoDto readById(int id){
         return crudDemoRepositry.findById(id).map(this::toDto).orElse(null);
