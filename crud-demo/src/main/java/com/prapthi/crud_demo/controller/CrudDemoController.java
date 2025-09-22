@@ -33,6 +33,12 @@ public class CrudDemoController {
         return crudDemoService.deleteByName(name);
     }
 
+    @DeleteMapping("/deleteByEmailId/{emailId}")
+    public boolean deleteByEmailId(@PathVariable String emailId){
+        System.out.println("Data Delete Successfully By EmailId: "+emailId);
+        return crudDemoService.deleteByEmailId(emailId);
+    }
+
     @PutMapping("/update/{id}")
     public CrudDemoDto updateById(@PathVariable int id, @RequestBody CrudDemoDto crudDemoDto) {
         System.out.println("Data Update By Id");

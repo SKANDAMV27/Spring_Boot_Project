@@ -66,6 +66,18 @@ public class CrudDemoService {
         System.out.println("Name Is in the Data Base");
         crudDemoRepositry.deleteByName(name);
         return true;
+    }
+
+    public boolean deleteByEmailId(String emailId){
+        System.out.println("Delete By emailId in Service Layer");
+        long deleteByEmailId = crudDemoRepositry.deleteByEmailId(emailId);
+        if(deleteByEmailId==0){
+            System.out.println("No Records Are found on this EmailId");
+            return false;
+        }
+        System.out.println("Email ID Found");
+        crudDemoRepositry.deleteByEmailId(emailId);
+        return true;
 
     }
 
