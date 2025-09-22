@@ -40,73 +40,79 @@ public class CrudDemoService {
     }
 
     public CrudDemoDto save(CrudDemoDto crudDemoDto){
-
         CrudDemoEntity entity = toEntity(crudDemoDto);
         CrudDemoEntity savedEntity = crudDemoRepositry.save(entity);
         return toDto(savedEntity);
     }
 
+
     public boolean delete(int id){
         if(!crudDemoRepositry.existsById(id)){
-            System.out.println("Id Does not exist on the Database");
+            System.out.println("Id does not exist in the Database");
             return false;
-
         }
-        System.out.println("Successfully Deleted");
         crudDemoRepositry.deleteById(id);
+        System.out.println("Successfully Deleted");
         return true;
-
     }
 
     public CrudDemoDto updateById(int id, CrudDemoDto crudDemoDto){
-        System.out.println("Update the Data Using Id");
-        return crudDemoRepositry.findById(id).map(exist->{
+        return crudDemoRepositry.findById(id).map(exist -> {
             if(crudDemoDto.getName()!=null) exist.setName(crudDemoDto.getName());
             if(crudDemoDto.getEmailId()!=null) exist.setEmailId(crudDemoDto.getEmailId());
             if(crudDemoDto.getSalary()!=null) exist.setSalary(crudDemoDto.getSalary());
             if(crudDemoDto.getDateOfBirth()!=null) exist.setDateOfBirth(crudDemoDto.getDateOfBirth());
             if(crudDemoDto.getMobileNumber()!=null) exist.setMobileNumber(crudDemoDto.getMobileNumber());
-
-            CrudDemoEntity save = crudDemoRepositry.save(exist);
-            return toDto(save);
+            CrudDemoEntity saved = crudDemoRepositry.save(exist);
+            return toDto(saved);
         }).orElse(null);
     }
 
-    public CrudDemoDto updateByName(String name,CrudDemoDto crudDemoDto){
-        System.out.println("Update By Name Service Layer");
-        List<CrudDemoEntity> entity = Collections.singletonList((CrudDemoEntity) crudDemoRepositry.findByName(name));
-        for(CrudDemoEntity exist:entity){
-            if(crudDemoDto.getName()!=null)exist.setName(crudDemoDto.getName());
-            if(crudDemoDto.getEmailId()!=null)exist.setEmailId(crudDemoDto.getEmailId());
-            if(crudDemoDto.getSalary()!=null)exist.setSalary(crudDemoDto.getSalary());
-            if(crudDemoDto.getDateOfBirth()!=null)exist.setDateOfBirth(crudDemoDto.getDateOfBirth());
+    public List<CrudDemoDto> updateByName(String name, CrudDemoDto crudDemoDto) {
+        List<CrudDemoEntity> entities = crudDemoRepositry.findByName(name);
+        if (entities.isEmpty()) {
+            System.out.println("No entity found with name: " + name);
+            return Collections.emptyList();
+        }
+
+        for (CrudDemoEntity exist : entities) {
+            if (crudDemoDto.getName() != null) exist.setName(crudDemoDto.getName());
+            if (crudDemoDto.getEmailId() != null) exist.setEmailId(crudDemoDto.getEmailId());
+            if (crudDemoDto.getSalary() != null) exist.setSalary(crudDemoDto.getSalary());
+            if (crudDemoDto.getDateOfBirth() != null) exist.setDateOfBirth(crudDemoDto.getDateOfBirth());
+            if (crudDemoDto.getMobileNumber() != null) exist.setMobileNumber(crudDemoDto.getMobileNumber());
             crudDemoRepositry.save(exist);
         }
-        return (CrudDemoDto) entity.stream().map(this::toDto).toList();
 
+        return entities.stream().map(this::toDto).collect(Collectors.toList());
     }
 
     public CrudDemoDto readById(int id){
-        System.out.println("Read By Id");
-
-//        return crudDemoRepositry.
-//                findById(id).
-//                map(this::toDto)
-//                .orElse(null);
-
-        CrudDemoEntity readById = crudDemoRepositry.findById(id).orElse(null);
-        return toDto(readById);
-
+        return crudDemoRepositry.findById(id).map(this::toDto).orElse(null);
     }
 
-    public List<CrudDemoDto> readAll(CrudDemoDto crudDemoDtor){
-        System.out.println("Read All The Data");
-        return crudDemoRepositry.findAll().
-                stream().
-                map(this::toDto).
-                collect(Collectors.toList());
-
-
+    public List<CrudDemoDto> readAll(){
+        return crudDemoRepositry.findAll().stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
     }
 
+    public List<CrudDemoDto> readByName(String name){
+        List<CrudDemoEntity> entities = crudDemoRepositry.findByName(name);
+        if (entities.isEmpty()) {
+            System.out.println("No records found for name: " + name);
+            return Collections.emptyList();
+        }
+        return entities.stream().map(this::toDto).collect(Collectors.toList());
+    }
+
+    public List<CrudDemoDto> readByEmail(String email){
+        System.out.println("Read The Data By Email");
+        List<CrudDemoEntity> readByEmail = crudDemoRepositry.findByEmail(email);
+        if(readByEmail.isEmpty()){
+            System.out.println("Email Record exist");
+            return Collections.emptyList();
+        }
+        return readByEmail.stream().map(this::toDto).collect(Collectors.toList());
+    }
 }

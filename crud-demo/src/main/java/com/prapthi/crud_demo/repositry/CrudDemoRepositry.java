@@ -11,6 +11,9 @@ import java.util.List;
 public interface CrudDemoRepositry extends JpaRepository<CrudDemoEntity,Integer> {
 
     List<CrudDemoEntity> findByName(String name);
+    List<CrudDemoEntity> findByEmail(String email);
+
+//    List<CrudDemoEntity> readByName(String name);
 
 
 }
