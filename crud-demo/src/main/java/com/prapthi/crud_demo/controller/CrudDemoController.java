@@ -21,19 +21,19 @@ public class CrudDemoController {
         return crudDemoService.save(crudDemoDto);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/deleteId/{id}")
     public boolean deleteData(@PathVariable int id) {
         System.out.println("Data Delete Successfully By Id");
         return crudDemoService.delete(id);
     }
 
-    @DeleteMapping("/delete/{name}")
+    @DeleteMapping("/deleteName/{name}")
     public boolean deleteByName(@PathVariable String name){
         System.out.println("Data Delete Successfully By Name");
         return crudDemoService.deleteByName(name);
     }
 
-    @DeleteMapping("/delete/{emailId}")
+    @DeleteMapping("/deleteEmail/{emailId}")
     public boolean deleteByEmailId(@PathVariable String emailId){
         System.out.println("Data Delete Successfully By EmailId: "+emailId);
         return crudDemoService.deleteByEmailId(emailId);
