@@ -31,10 +31,15 @@ public class CrudDemoController {
 
     @PutMapping("/update/{id}")
     public CrudDemoDto updateById(@PathVariable int id, @RequestBody CrudDemoDto crudDemoDto) {
-
         System.out.println("Update The Data By The Id");
-
         return crudDemoService.updateById(id, crudDemoDto);
+    }
+
+    @PutMapping("/updateByName/{name}")
+    public CrudDemoDto updateByName(@PathVariable String name,@RequestBody CrudDemoDto crudDemoDto)
+    {
+        System.out.println("Update By Name and Controller Layer");
+        return crudDemoService.updateByName(name,crudDemoDto);
     }
 
     @GetMapping("/get/{id}")

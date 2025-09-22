@@ -47,11 +47,15 @@ public class CrudDemoService {
     }
 
     public boolean delete(int id){
-        if(crudDemoRepositry.existsById(id)){
-            crudDemoRepositry.deleteById(id);
-            return true;
+        if(!crudDemoRepositry.existsById(id)){
+            System.out.println("Id Does not exist on the Database");
+            return false;
+
         }
-        return false;
+        System.out.println("Successfully Deleted");
+        crudDemoRepositry.deleteById(id);
+        return true;
+
     }
 
     public CrudDemoDto updateById(int id, CrudDemoDto crudDemoDto){
@@ -66,6 +70,20 @@ public class CrudDemoService {
             CrudDemoEntity save = crudDemoRepositry.save(exist);
             return toDto(save);
         }).orElse(null);
+    }
+
+    public CrudDemoDto updateByName(String name,CrudDemoDto crudDemoDto){
+        System.out.println("Update By Name Service Layer");
+        List<CrudDemoEntity> entity = Collections.singletonList((CrudDemoEntity) crudDemoRepositry.findByName(name));
+        for(CrudDemoEntity exist:entity){
+            if(crudDemoDto.getName()!=null)exist.setName(crudDemoDto.getName());
+            if(crudDemoDto.getEmailId()!=null)exist.setEmailId(crudDemoDto.getEmailId());
+            if(crudDemoDto.getSalary()!=null)exist.setSalary(crudDemoDto.getSalary());
+            if(crudDemoDto.getDateOfBirth()!=null)exist.setDateOfBirth(crudDemoDto.getDateOfBirth());
+            crudDemoRepositry.save(exist);
+        }
+        return (CrudDemoDto) entity.stream().map(this::toDto).toList();
+
     }
 
     public CrudDemoDto readById(int id){
@@ -83,7 +101,10 @@ public class CrudDemoService {
 
     public List<CrudDemoDto> readAll(CrudDemoDto crudDemoDtor){
         System.out.println("Read All The Data");
-        return crudDemoRepositry.findAll().stream().map(this::toDto).collect(Collectors.toList());
+        return crudDemoRepositry.findAll().
+                stream().
+                map(this::toDto).
+                collect(Collectors.toList());
 
 
     }
