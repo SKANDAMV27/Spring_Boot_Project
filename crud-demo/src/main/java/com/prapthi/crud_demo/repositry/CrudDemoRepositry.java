@@ -21,6 +21,11 @@ public interface CrudDemoRepositry extends JpaRepository<CrudDemoEntity,Integer>
     @Modifying
     long deleteByName(String name);
 
+    @Transactional
+    @Modifying
     long deleteByEmailId(String emailId);
+
+
+//    List<CrudDemoEntity> updateByName(String name);
 }
 
