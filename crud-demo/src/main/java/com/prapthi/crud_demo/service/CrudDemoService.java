@@ -56,6 +56,17 @@ public class CrudDemoService {
         return true;
     }
 
+    public boolean deleteByName(String name){
+        System.out.println("Delete By The Name by Service Layer");
+        if(!crudDemoRepositry.deleteByName(name)){
+            System.out.println("This Name Doesn't Exist in The Record");
+            return false;
+        }
+        System.out.println("Name Is in the Data Base");
+        return crudDemoRepositry.deleteByName(name);
+
+    }
+
     public CrudDemoDto updateById(int id, CrudDemoDto crudDemoDto){
         return crudDemoRepositry.findById(id).map(exist -> {
             if(crudDemoDto.getName()!=null) exist.setName(crudDemoDto.getName());
@@ -106,9 +117,9 @@ public class CrudDemoService {
         return entities.stream().map(this::toDto).collect(Collectors.toList());
     }
 
-    public List<CrudDemoDto> readByEmail(String email){
+    public List<CrudDemoDto> readByEmail(String emailId){
         System.out.println("Read The Data By Email");
-        List<CrudDemoEntity> readByEmail = crudDemoRepositry.findByEmail(email);
+        List<CrudDemoEntity> readByEmail = crudDemoRepositry.findByEmailId(emailId);
         if(readByEmail.isEmpty()){
             System.out.println("Email Record exist");
             return Collections.emptyList();

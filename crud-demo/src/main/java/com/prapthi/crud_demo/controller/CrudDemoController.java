@@ -16,16 +16,20 @@ public class CrudDemoController {
 
     @PostMapping("/saveData")
     public CrudDemoDto save(@RequestBody CrudDemoDto crudDemoDto) {
+        System.out.println("Data Saved Successfully");
+        System.out.println(crudDemoDto);
         return crudDemoService.save(crudDemoDto);
     }
 
     @DeleteMapping("/delete/{id}")
     public boolean deleteData(@PathVariable int id) {
+        System.out.println("Data Delete Successfully By Id");
         return crudDemoService.delete(id);
     }
 
     @PutMapping("/update/{id}")
     public CrudDemoDto updateById(@PathVariable int id, @RequestBody CrudDemoDto crudDemoDto) {
+        System.out.println("Data Update By Id");
         return crudDemoService.updateById(id, crudDemoDto);
     }
 
@@ -36,16 +40,19 @@ public class CrudDemoController {
 
     @GetMapping("/get/{id}")
     public CrudDemoDto readById(@PathVariable int id) {
+        System.out.println("Data Get By Name");
         return crudDemoService.readById(id);
     }
 
     @GetMapping("/getAll")
     public List<CrudDemoDto> readAll() {
+        System.out.println("Get All The Data");
         return crudDemoService.readAll();
     }
 
     @GetMapping("/getByName/{name}")
     public List<CrudDemoDto> readByName(@PathVariable String name) {
+        System.out.println("Get Data By The Name");
         return crudDemoService.readByName(name);
     }
 
