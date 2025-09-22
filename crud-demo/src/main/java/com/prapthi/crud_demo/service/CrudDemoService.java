@@ -58,12 +58,14 @@ public class CrudDemoService {
 
     public boolean deleteByName(String name){
         System.out.println("Delete By The Name by Service Layer");
-        if(!crudDemoRepositry.deleteByName(name)){
+        long deleteByName = crudDemoRepositry.deleteByName(name);
+        if(deleteByName==0){
             System.out.println("This Name Doesn't Exist in The Record");
             return false;
         }
         System.out.println("Name Is in the Data Base");
-        return crudDemoRepositry.deleteByName(name);
+        crudDemoRepositry.deleteByName(name);
+        return true;
 
     }
 

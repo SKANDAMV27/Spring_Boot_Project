@@ -1,7 +1,9 @@
 package com.prapthi.crud_demo.repositry;
 
 import com.prapthi.crud_demo.entity.CrudDemoEntity;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,6 +17,10 @@ public interface CrudDemoRepositry extends JpaRepository<CrudDemoEntity,Integer>
     // Change this to match the entity field
     List<CrudDemoEntity> findByEmailId(String emailId);
 
-    boolean deleteByName(String name);
+    @Transactional
+    @Modifying
+    long deleteByName(String name);
+
+    long deleteByEmailId(String emailId);
 }
 

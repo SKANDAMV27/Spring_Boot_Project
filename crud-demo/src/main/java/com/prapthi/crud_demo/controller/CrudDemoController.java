@@ -27,6 +27,12 @@ public class CrudDemoController {
         return crudDemoService.delete(id);
     }
 
+    @DeleteMapping("/deleteByName/{name}")
+    public boolean deleteByName(@PathVariable String name){
+        System.out.println("Data Delete Successfully By Name");
+        return crudDemoService.deleteByName(name);
+    }
+
     @PutMapping("/update/{id}")
     public CrudDemoDto updateById(@PathVariable int id, @RequestBody CrudDemoDto crudDemoDto) {
         System.out.println("Data Update By Id");
