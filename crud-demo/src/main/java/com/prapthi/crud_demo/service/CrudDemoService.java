@@ -46,6 +46,11 @@ public class CrudDemoService {
         return toDto(savedEntity);
     }
 
+    public void deleteAll(){
+        System.out.println("Delete All The Data");
+        crudDemoRepositry.deleteAll();
+
+    }
 
     //Delete The Data By The id
     public boolean delete(int id){

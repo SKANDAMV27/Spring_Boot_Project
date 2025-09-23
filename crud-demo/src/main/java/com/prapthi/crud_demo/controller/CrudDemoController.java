@@ -14,7 +14,7 @@ public class CrudDemoController {
     @Autowired
     private CrudDemoService crudDemoService;
 
-    @PostMapping("/")
+    @PostMapping("/save")
     public CrudDemoDto save(@RequestBody CrudDemoDto crudDemoDto) {
         System.out.println("Data Saved Successfully");
         System.out.println(crudDemoDto);
@@ -25,6 +25,12 @@ public class CrudDemoController {
     public boolean deleteData(@PathVariable int id) {
         System.out.println("Data Delete Successfully By Id");
         return crudDemoService.delete(id);
+    }
+
+    @DeleteMapping("/deleteAll")
+    public void deleteAll(){
+        System.out.println("Delete All tThe Data");
+        crudDemoService.deleteAll();
     }
 
     @PutMapping("putId/{id}")
