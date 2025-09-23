@@ -27,28 +27,11 @@ public class CrudDemoController {
         return crudDemoService.delete(id);
     }
 
-    @DeleteMapping("deleteName/{name}")
-    public boolean deleteByName(@PathVariable String name){
-        System.out.println("Data Delete Successfully By Name");
-        return crudDemoService.deleteByName(name);
-    }
-
-    @DeleteMapping("deleteEmail/{emailId}")
-    public boolean deleteByEmailId(@PathVariable String emailId){
-        System.out.println("Data Delete Successfully By EmailId: "+emailId);
-        return crudDemoService.deleteByEmailId(emailId);
-    }
-
     @PutMapping("putId/{id}")
     public CrudDemoDto updateById(@PathVariable int id, @RequestBody CrudDemoDto crudDemoDto) {
         System.out.println("Data Update By Id");
         return crudDemoService.updateById(id, crudDemoDto);
     }
-
-//    @PutMapping("/updateByName/{name}")
-//    public List<CrudDemoDto> updateByName(@PathVariable String name, @RequestBody CrudDemoDto crudDemoDto) {
-//        return crudDemoService.updateByName(name, crudDemoDto);
-//    }
 
     @GetMapping("getId/{id}")
     public CrudDemoDto readById(@PathVariable int id) {

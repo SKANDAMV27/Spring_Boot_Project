@@ -15,16 +15,5 @@ public interface CrudDemoRepositry extends JpaRepository<CrudDemoEntity,Integer>
     List<CrudDemoEntity> findByName(String name);
 
     List<CrudDemoEntity> findByEmailId(String emailId);
-
-    @Transactional
-    @Modifying
-    long deleteByName(String name);
-
-    @Transactional
-    @Modifying
-    long deleteByEmailId(String emailId);
-
-
-//    List<CrudDemoEntity> updateByName(String name);
 }
 

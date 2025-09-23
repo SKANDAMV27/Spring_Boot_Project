@@ -57,34 +57,6 @@ public class CrudDemoService {
         System.out.println("Successfully Deleted");
         return true;
     }
-
-    //Delete The Data By name
-    public boolean deleteByName(String name){
-        System.out.println("Delete By The Name by Service Layer");
-        long deleteByName = crudDemoRepositry.deleteByName(name);
-        if(deleteByName==0){
-            System.out.println("This Name Doesn't Exist in The Record");
-            return false;
-        }
-        System.out.println("Name Is in the Data Base");
-        crudDemoRepositry.deleteByName(name);
-        return true;
-    }
-
-    //Delete The data by the Email-ID
-    public boolean deleteByEmailId(String emailId){
-        System.out.println("Delete By emailId in Service Layer");
-        long deleteByEmailId = crudDemoRepositry.deleteByEmailId(emailId);
-        if(deleteByEmailId==0){
-            System.out.println("No Records Are found on this EmailId");
-            return false;
-        }
-        System.out.println("Email ID Found");
-        crudDemoRepositry.deleteByEmailId(emailId);
-        return true;
-
-    }
-
     //Update By id
     public CrudDemoDto updateById(int id, CrudDemoDto crudDemoDto){
         return crudDemoRepositry.findById(id).map(exist -> {
@@ -97,25 +69,6 @@ public class CrudDemoService {
             return toDto(saved);
         }).orElse(null);
     }
-
-//    public List<CrudDemoDto> updateByName(String name, CrudDemoDto crudDemoDto) {
-//        List<CrudDemoEntity> entities = crudDemoRepositry.updateByName(name);
-//        if (entities.isEmpty()) {
-//            System.out.println("No entity found with name: " + name);
-//            return Collections.emptyList();
-//        }
-//
-//        for (CrudDemoEntity exist : entities) {
-//            if (crudDemoDto.getName() != null) exist.setName(crudDemoDto.getName());
-//            if (crudDemoDto.getEmailId() != null) exist.setEmailId(crudDemoDto.getEmailId());
-//            if (crudDemoDto.getSalary() != null) exist.setSalary(crudDemoDto.getSalary());
-//            if (crudDemoDto.getDateOfBirth() != null) exist.setDateOfBirth(crudDemoDto.getDateOfBirth());
-//            if (crudDemoDto.getMobileNumber() != null) exist.setMobileNumber(crudDemoDto.getMobileNumber());
-//            crudDemoRepositry.save(exist);
-//        }
-//
-//        return entities.stream().map(this::toDto).collect(Collectors.toList());
-//    }
 
     //Read By id
     public CrudDemoDto readById(int id){
