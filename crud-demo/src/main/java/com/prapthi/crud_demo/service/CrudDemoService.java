@@ -39,6 +39,7 @@ public class CrudDemoService {
         return entity;
     }
 
+    //Insert the Data
     public CrudDemoDto save(CrudDemoDto crudDemoDto){
         CrudDemoEntity entity = toEntity(crudDemoDto);
         CrudDemoEntity savedEntity = crudDemoRepositry.save(entity);
@@ -46,6 +47,7 @@ public class CrudDemoService {
     }
 
 
+    //Delete The Data By The id
     public boolean delete(int id){
         if(!crudDemoRepositry.existsById(id)){
             System.out.println("Id does not exist in the Database");
@@ -56,6 +58,7 @@ public class CrudDemoService {
         return true;
     }
 
+    //Delete The Data By name
     public boolean deleteByName(String name){
         System.out.println("Delete By The Name by Service Layer");
         long deleteByName = crudDemoRepositry.deleteByName(name);
@@ -68,6 +71,7 @@ public class CrudDemoService {
         return true;
     }
 
+    //Delete The data by the Email-ID
     public boolean deleteByEmailId(String emailId){
         System.out.println("Delete By emailId in Service Layer");
         long deleteByEmailId = crudDemoRepositry.deleteByEmailId(emailId);
@@ -81,6 +85,7 @@ public class CrudDemoService {
 
     }
 
+    //Update By id
     public CrudDemoDto updateById(int id, CrudDemoDto crudDemoDto){
         return crudDemoRepositry.findById(id).map(exist -> {
             if(crudDemoDto.getName()!=null) exist.setName(crudDemoDto.getName());
@@ -112,16 +117,19 @@ public class CrudDemoService {
 //        return entities.stream().map(this::toDto).collect(Collectors.toList());
 //    }
 
+    //Read By id
     public CrudDemoDto readById(int id){
         return crudDemoRepositry.findById(id).map(this::toDto).orElse(null);
     }
 
+    //Read All The Data
     public List<CrudDemoDto> readAll(){
         return crudDemoRepositry.findAll().stream()
                 .map(this::toDto)
                 .collect(Collectors.toList());
     }
 
+    //Read The Data By The Name
     public List<CrudDemoDto> readByName(String name){
         List<CrudDemoEntity> entities = crudDemoRepositry.findByName(name);
         if (entities.isEmpty()) {
@@ -131,6 +139,7 @@ public class CrudDemoService {
         return entities.stream().map(this::toDto).collect(Collectors.toList());
     }
 
+    //Read The Data By the Email
     public List<CrudDemoDto> readByEmail(String emailId){
         System.out.println("Read The Data By Email");
         List<CrudDemoEntity> readByEmail = crudDemoRepositry.findByEmailId(emailId);
