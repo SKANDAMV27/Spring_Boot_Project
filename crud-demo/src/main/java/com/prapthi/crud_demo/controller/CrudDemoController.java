@@ -17,7 +17,6 @@ public class CrudDemoController {
     @PostMapping("/save")
     public CrudDemoDto save(@RequestBody CrudDemoDto crudDemoDto) {
         System.out.println("Data Saved Successfully");
-        System.out.println(crudDemoDto);
         return crudDemoService.save(crudDemoDto);
     }
 
