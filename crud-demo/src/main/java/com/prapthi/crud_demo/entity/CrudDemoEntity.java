@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -21,4 +23,12 @@ public class CrudDemoEntity {
     private Integer salary;
     private Date dateOfBirth;
     private Long mobileNumber;
+
+    private int isDelete;
+    private String deletedBy;
+    private Date deletedTime;
+
+    private int isGet;
+
+    private int isPut;
 }

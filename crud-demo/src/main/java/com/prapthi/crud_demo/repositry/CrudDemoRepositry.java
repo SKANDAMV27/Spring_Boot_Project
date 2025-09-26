@@ -15,5 +15,7 @@ public interface CrudDemoRepositry extends JpaRepository<CrudDemoEntity,Integer>
     List<CrudDemoEntity> findByName(String name);
 
     List<CrudDemoEntity> findByEmailId(String emailId);
+
+//    List<CrudDemoEntity> findAllByIsDeleted(int isDelete);
 }
 

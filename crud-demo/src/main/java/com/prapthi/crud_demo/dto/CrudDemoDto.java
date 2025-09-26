@@ -16,4 +16,13 @@ public class CrudDemoDto {
     private Integer salary;
     private Date dateOfBirth;
     private Long mobileNumber;
+
+    private int isDelete;
+    private String deletedBy;
+    private Date deletedTime;
+
+    private int isGet;
+
+    private int isPut;
+
 }

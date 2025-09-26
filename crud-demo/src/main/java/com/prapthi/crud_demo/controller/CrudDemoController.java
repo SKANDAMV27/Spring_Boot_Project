@@ -1,5 +1,6 @@
 package com.prapthi.crud_demo.controller;
 
+import com.prapthi.crud_demo.Response.CrudResponse;
 import com.prapthi.crud_demo.dto.CrudDemoDto;
 import com.prapthi.crud_demo.service.CrudDemoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,5 +62,22 @@ public class CrudDemoController {
         System.out.println("Controller Layer Is Running");
         System.out.println("Read By Email");
         return crudDemoService.readByEmail(email);
+    }
+
+    @DeleteMapping("/softDelete/{id}")
+    public CrudResponse softDelete(@PathVariable int id){
+        System.out.println("Soft Delete");
+
+         try{
+             crudDemoService.softDelete(id);
+             System.out.println("Data Saved Successfully");
+             return new CrudResponse("Delete Successfully",id);
+
+         }catch (Exception e){
+             System.out.println("Error: "+e.getMessage());
+             return new CrudResponse("Error: "+e.getMessage(),e);
+
+         }
+
     }
 }

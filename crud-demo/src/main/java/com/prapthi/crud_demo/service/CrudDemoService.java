@@ -6,7 +6,10 @@ import com.prapthi.crud_demo.repositry.CrudDemoRepositry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -24,7 +27,12 @@ public class CrudDemoService {
                 entity.getEmailId(),
                 entity.getSalary(),
                 entity.getDateOfBirth(),
-                entity.getMobileNumber()
+                entity.getMobileNumber(),
+                entity.getIsDelete(),
+                entity.getDeletedBy(),
+                entity.getDeletedTime(),
+                entity.getIsGet(),
+                entity.getIsPut()
         );
     }
 
@@ -97,7 +105,7 @@ public class CrudDemoService {
         return entities.stream().map(this::toDto).collect(Collectors.toList());
     }
 
-    //Read The Data By the Email
+
     public List<CrudDemoDto> readByEmail(String emailId){
         System.out.println("Read The Data By Email");
         List<CrudDemoEntity> readByEmail = crudDemoRepositry.findByEmailId(emailId);
@@ -106,5 +114,23 @@ public class CrudDemoService {
             return Collections.emptyList();
         }
         return readByEmail.stream().map(this::toDto).collect(Collectors.toList());
+    }
+
+    public String softDelete(int id){
+        System.out.println("Soft Delete Operation");
+        try{
+            CrudDemoEntity crudDemoEntity = crudDemoRepositry.findById(id).orElseThrow(()-> new RuntimeException("Id Not Found"));
+            crudDemoEntity.setIsDelete(1);
+            crudDemoEntity.setDeletedBy("Skanda");
+            crudDemoEntity.setDeletedTime(new Date());
+            crudDemoRepositry.save(crudDemoEntity);
+            return "Soft Delete Successfully";
+        } catch (Exception e) {
+            throw new RuntimeException("Error in Soft Delete: "+e.getMessage(),e);
+
+        }
+
+
+
     }
 }
