@@ -127,10 +127,11 @@ public class CrudDemoService {
             return "Soft Delete Successfully";
         } catch (Exception e) {
             throw new RuntimeException("Error in Soft Delete: "+e.getMessage(),e);
-
         }
+    }
 
-
-
+    public Integer sumOfSalary(){
+        System.out.println("Display The Sum of Salary");
+        return crudDemoRepositry.getSalarySum();
     }
 }

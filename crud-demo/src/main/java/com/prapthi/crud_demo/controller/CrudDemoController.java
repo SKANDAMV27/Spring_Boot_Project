@@ -71,7 +71,7 @@ public class CrudDemoController {
          try{
              crudDemoService.softDelete(id);
              System.out.println("Data Saved Successfully");
-             return new CrudResponse("Delete Successfully",id);
+             return new CrudResponse("Delete Successfully","Deleted Id:"+id);
 
          }catch (Exception e){
              System.out.println("Error: "+e.getMessage());

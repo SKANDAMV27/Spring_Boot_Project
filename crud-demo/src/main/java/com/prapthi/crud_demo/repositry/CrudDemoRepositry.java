@@ -4,6 +4,7 @@ import com.prapthi.crud_demo.entity.CrudDemoEntity;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public interface CrudDemoRepositry extends JpaRepository<CrudDemoEntity,Integer>
 
     List<CrudDemoEntity> findByEmailId(String emailId);
 
-//    List<CrudDemoEntity> findAllByIsDeleted(int isDelete);
+    @Query("select sum(e.salary) from CrudDemoEntity e")
+    Integer getSalarySum();
 }
 
