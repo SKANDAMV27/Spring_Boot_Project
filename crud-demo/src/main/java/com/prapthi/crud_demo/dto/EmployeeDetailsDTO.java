@@ -21,5 +21,10 @@ public class EmployeeDetailsDTO {
     private String CreatedBy;
     private Date creationTime;
 
-    private String lastModifiedBy
+    private String lastModifiedBy;
+    private Date lastModifiedTime;
+
+    private int isDeleted;
+    private String deletedBy;
+    private Date deletedTime;
 }
