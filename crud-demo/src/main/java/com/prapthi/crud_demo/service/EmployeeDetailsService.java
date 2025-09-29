@@ -6,6 +6,9 @@ import com.prapthi.crud_demo.repositry.EmployeeDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.Optional;
+
 @Service
 public class EmployeeDetailsService {
 
@@ -14,7 +17,6 @@ public class EmployeeDetailsService {
 
     public EmployeeDetailsEntity toEntity(EmployeeDetailsDTO employeeDetailsDTO){
         EmployeeDetailsEntity employeeDetailsEntity = new EmployeeDetailsEntity();
-        employeeDetailsEntity.setId(employeeDetailsDTO.getId());
         employeeDetailsEntity.setEmpId(employeeDetailsDTO.getEmpId());
         employeeDetailsEntity.setAddress(employeeDetailsDTO.getAddress());
         employeeDetailsEntity.setDestination(employeeDetailsDTO.getDestination());
@@ -44,9 +46,26 @@ public class EmployeeDetailsService {
                 entity.getDeletedTime());
     }
 
+
     public EmployeeDetailsDTO save(EmployeeDetailsDTO employeeDetailsDTO){
         System.out.println("DataSaved Successfully");
         EmployeeDetailsEntity entity = toEntity(employeeDetailsDTO);
-        return detailsDTO(entity);
+        entity.setCreatedBy("Skanda M V");
+        entity.setCreationTime(new Date());
+        EmployeeDetailsEntity savedEntity = employeeDetailsRepository.save(entity);
+        return detailsDTO(savedEntity);
+    }
+
+    public Optional<EmployeeDetailsDTO> updated(int id, EmployeeDetailsDTO employeeDetailsDTO){
+        System.out.println("Update the Employee Details");
+        return employeeDetailsRepository.findById(id).map(exist ->{
+                if(employeeDetailsDTO.getAddress()!=null) exist.setAddress(employeeDetailsDTO.getAddress());
+                if(employeeDetailsDTO.getEmailId()!=null) exist.setEmailId(employeeDetailsDTO.getEmailId());
+                if(employeeDetailsDTO.getDestination()!=null) exist.setDestination(employeeDetailsDTO.getDestination());
+                exist.setLastModifiedBy("Skanda M V");
+                exist.setLastModifiedTime(new Date());
+                EmployeeDetailsEntity saved = employeeDetailsRepository.save(exist);
+                return detailsDTO(saved);
+        });
     }
 }
