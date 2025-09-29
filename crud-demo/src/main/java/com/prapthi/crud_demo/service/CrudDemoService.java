@@ -5,6 +5,7 @@ import com.prapthi.crud_demo.entity.CrudDemoEntity;
 import com.prapthi.crud_demo.repositry.CrudDemoRepositry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -130,8 +131,8 @@ public class CrudDemoService {
         }
     }
 
-    public Integer sumOfSalary(){
+    public Integer salaryDetails(){
         System.out.println("Display The Sum of Salary");
-        return crudDemoRepositry.getSalarySum();
+        return crudDemoRepositry.getSalaryStatus();
     }
 }

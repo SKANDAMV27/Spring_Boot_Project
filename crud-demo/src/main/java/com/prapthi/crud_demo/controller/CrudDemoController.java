@@ -2,6 +2,7 @@ package com.prapthi.crud_demo.controller;
 
 import com.prapthi.crud_demo.Response.CrudResponse;
 import com.prapthi.crud_demo.dto.CrudDemoDto;
+import com.prapthi.crud_demo.entity.CrudDemoEntity;
 import com.prapthi.crud_demo.service.CrudDemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -77,6 +78,12 @@ public class CrudDemoController {
              System.out.println("Error: "+e.getMessage());
              return new CrudResponse("Error: "+e.getMessage(),e);
          }
+    }
+
+    @GetMapping("/salaryStatus")
+    public Integer getSalaryStatus(){
+        System.out.println("Get The Salary Details");
+        return crudDemoService.salaryDetails();
     }
 
 
