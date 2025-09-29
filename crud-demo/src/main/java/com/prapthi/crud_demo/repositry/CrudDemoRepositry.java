@@ -17,7 +17,7 @@ public interface CrudDemoRepositry extends JpaRepository<CrudDemoEntity,Integer>
 
     List<CrudDemoEntity> findByEmailId(String emailId);
 
-    @Query("select sum(e.salary) from CrudDemoEntity e")
-    Integer getSalarySum();
+    @Query("select sum(e.salary),Average(e.salary) from CrudDemoEntity e")
+    Integer getSalaryStatus();
 }
 
