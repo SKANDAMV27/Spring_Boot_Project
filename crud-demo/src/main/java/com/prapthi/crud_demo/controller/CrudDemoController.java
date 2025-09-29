@@ -1,6 +1,7 @@
 package com.prapthi.crud_demo.controller;
 
 import com.prapthi.crud_demo.Response.CrudResponse;
+import com.prapthi.crud_demo.Response.SalaryStatusResponse;
 import com.prapthi.crud_demo.dto.CrudDemoDto;
 import com.prapthi.crud_demo.entity.CrudDemoEntity;
 import com.prapthi.crud_demo.service.CrudDemoService;
@@ -81,7 +82,7 @@ public class CrudDemoController {
     }
 
     @GetMapping("/salaryStatus")
-    public Integer getSalaryStatus(){
+    public SalaryStatusResponse getSalaryStatus(){
         System.out.println("Get The Salary Details");
         return crudDemoService.salaryDetails();
     }

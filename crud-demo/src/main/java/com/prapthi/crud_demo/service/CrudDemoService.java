@@ -1,5 +1,6 @@
 package com.prapthi.crud_demo.service;
 
+import com.prapthi.crud_demo.Response.SalaryStatusResponse;
 import com.prapthi.crud_demo.dto.CrudDemoDto;
 import com.prapthi.crud_demo.entity.CrudDemoEntity;
 import com.prapthi.crud_demo.repositry.CrudDemoRepositry;
@@ -131,7 +132,7 @@ public class CrudDemoService {
         }
     }
 
-    public Integer salaryDetails(){
+    public SalaryStatusResponse salaryDetails(){
         System.out.println("Display The Sum of Salary");
         return crudDemoRepositry.getSalaryStatus();
     }
