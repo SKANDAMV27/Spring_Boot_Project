@@ -44,8 +44,9 @@ public class EmployeeDetailsService {
                 entity.getDeletedTime());
     }
 
-    public EmployeeDetailsDTO save(){
+    public EmployeeDetailsDTO save(EmployeeDetailsDTO employeeDetailsDTO){
         System.out.println("DataSaved Successfully");
-        return employeeDetailsRepository.save()
+        EmployeeDetailsEntity entity = toEntity(employeeDetailsDTO);
+        return detailsDTO(entity);
     }
 }
