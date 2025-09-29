@@ -25,7 +25,23 @@ public class EmployeeDetailsService {
         employeeDetailsEntity.setLastModifiedTime(employeeDetailsDTO.getLastModifiedTime());
         employeeDetailsEntity.setIsDeleted(employeeDetailsDTO.getIsDeleted());
         employeeDetailsEntity.setDeletedBy(employeeDetailsDTO.getDeletedBy());
+        employeeDetailsEntity.setDeletedTime(employeeDetailsDTO.getDeletedTime());
+        return employeeDetailsEntity;
+    }
 
+    public EmployeeDetailsDTO detailsDTO(EmployeeDetailsEntity entity){
+        return new EmployeeDetailsDTO(entity.getId(),
+                entity.getEmpId(),
+                entity.getAddress(),
+                entity.getDestination(),
+                entity.getEmailId(),
+                entity.getCreatedBy(),
+                entity.getCreationTime(),
+                entity.getLastModifiedBy(),
+                entity.getLastModifiedTime(),
+                entity.getIsDeleted(),
+                entity.getDeletedBy(),
+                entity.getDeletedTime());
     }
 
     public EmployeeDetailsDTO save(){
