@@ -5,31 +5,33 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.Date;
-
 @Entity
-@Table(name="CRUD_DEMO_ENTITY ")
+@Table(name="EMPLOYEE_DETAILS_ENTITY")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class CrudDemoEntity {
+@NoArgsConstructor
+public class EmployeeDetailsEntity {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    private String name;
+    @Column(name="emp_id")
+    private int empId;
+    private String Address;
+    private String Destination;
     private String emailId;
-    private Integer salary;
-    private Date dateOfBirth;
-    private Long mobileNumber;
 
-    private int isDelete;
+    private String CreatedBy;
+    private Date creationTime;
+
+    private String lastModifiedBy;
+    private Date lastModifiedTime;
+
+    private int isDeleted;
     private String deletedBy;
     private Date deletedTime;
 
-    private int isGet;
 
-    private int isPut;
 }

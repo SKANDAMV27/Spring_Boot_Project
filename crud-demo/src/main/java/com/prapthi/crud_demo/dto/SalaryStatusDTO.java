@@ -5,15 +5,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class SalaryStatusDTO {
 
     private Long salarySum;
-
-    private double salaryAverage;
-
-    private int numberOfEmployee;
+    private Double salaryAverage;
+    private Long numberOfEmployee;
 
 
+    public SalaryStatusDTO(Long salarySum, Double salaryAverage, Long numberOfEmployee) {
+        this.salarySum = salarySum;
+        this.salaryAverage = salaryAverage;
+        this.numberOfEmployee = numberOfEmployee;
+    }
 }

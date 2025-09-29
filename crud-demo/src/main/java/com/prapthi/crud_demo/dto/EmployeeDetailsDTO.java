@@ -1,0 +1,25 @@
+package com.prapthi.crud_demo.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Date;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class EmployeeDetailsDTO {
+
+
+    private int id;
+    private int empId;
+    private String Address;
+    private String Destination;
+    private String emailId;
+
+    private String CreatedBy;
+    private Date creationTime;
+
+    private String lastModifiedBy
+}

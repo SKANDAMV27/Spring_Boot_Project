@@ -1,19 +1,15 @@
 package com.prapthi.crud_demo.service;
 
-import com.prapthi.crud_demo.Response.SalaryStatusResponse;
 import com.prapthi.crud_demo.dto.CrudDemoDto;
+import com.prapthi.crud_demo.dto.SalaryStatusDTO;
 import com.prapthi.crud_demo.entity.CrudDemoEntity;
 import com.prapthi.crud_demo.repositry.CrudDemoRepositry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -107,7 +103,6 @@ public class CrudDemoService {
         return entities.stream().map(this::toDto).collect(Collectors.toList());
     }
 
-
     public List<CrudDemoDto> readByEmail(String emailId){
         System.out.println("Read The Data By Email");
         List<CrudDemoEntity> readByEmail = crudDemoRepositry.findByEmailId(emailId);
@@ -126,14 +121,15 @@ public class CrudDemoService {
             crudDemoEntity.setDeletedBy("Skanda");
             crudDemoEntity.setDeletedTime(new Date());
             crudDemoRepositry.save(crudDemoEntity);
+            System.out.println("Soft Delete Successfully");
             return "Soft Delete Successfully";
         } catch (Exception e) {
             throw new RuntimeException("Error in Soft Delete: "+e.getMessage(),e);
         }
     }
 
-    public SalaryStatusResponse salaryDetails(){
-        System.out.println("Display The Sum of Salary");
+    public SalaryStatusDTO salaryDetails(){
+        System.out.println("Display The Salary Details Service Layer");
         return crudDemoRepositry.getSalaryStatus();
     }
 }
