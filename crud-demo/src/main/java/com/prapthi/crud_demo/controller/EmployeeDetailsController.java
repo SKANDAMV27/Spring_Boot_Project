@@ -41,10 +41,17 @@ public class EmployeeDetailsController {
         return employeeDetailsService.getAll(employeeDetailsDTO,id);
     }
 
-    @GetMapping("/combine")
+    @GetMapping("/leftJoin")
     public List<EmployeeWithCrudDto> getEmployeeWithCrudData(){
         System.out.println("Get The Data of Employee With CRUD Data");
         return employeeDetailsService.getEmployeeWithCrudData();
     }
 
+    @GetMapping("/innerJoin")
+    public List<EmployeeWithCrudDto> getTheDataByInnerJoin(){
+        System.out.println("Get The Data By The INNER JOIN");
+        return employeeDetailsService.getDataByInnerJoin();
     }
+
+
+}
