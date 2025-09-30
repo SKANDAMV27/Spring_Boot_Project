@@ -12,7 +12,7 @@ import java.util.List;
 public interface EmployeeDetailsRepository extends JpaRepository<EmployeeDetailsEntity,Integer> {
 
 
-    @Query("select new com.prapthi.crud_demo.dto.EmployeeWithCrudDto(e.empId, e.)")
+    @Query("select new com.prapthi.crud_demo.dto.EmployeeWithCrudDto(e.empId, e.emailId ,e.address,e.destination,c.name,c.salary) From ")
     List<EmployeeWithCrudDto> fetchEmployeeWithCrudDto();
 
 
