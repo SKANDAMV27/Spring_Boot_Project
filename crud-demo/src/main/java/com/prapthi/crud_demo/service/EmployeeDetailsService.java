@@ -68,4 +68,20 @@ public class EmployeeDetailsService {
                 return detailsDTO(saved);
         });
     }
+
+    public Optional<EmployeeDetailsDTO> deleteById(int id,EmployeeDetailsDTO employeeDetailsDTO){
+        System.out.println("Data Delete By Id");
+        return employeeDetailsRepository.findById(id).map(exist-> {
+            exist.setIsDeleted(1);
+            exist.setDeletedBy("Skanda M V");
+            exist.setDeletedTime(new Date());
+            EmployeeDetailsEntity save = employeeDetailsRepository.save(exist);
+            return detailsDTO(save);
+        } );
+    }
+
+    public Optional<EmployeeDetailsEntity> getAll(EmployeeDetailsDTO employeeDetailsDTO, int id){
+        System.out.println("Get All The Data");
+        return employeeDetailsRepository.findById(id);
+    }
 }
