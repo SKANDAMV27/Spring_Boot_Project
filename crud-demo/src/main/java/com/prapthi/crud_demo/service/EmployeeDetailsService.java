@@ -96,4 +96,9 @@ public class EmployeeDetailsService {
         System.out.println("Get The Data By The Inner Join");
         return employeeDetailsRepository.fetchTheDataByInnerJoin();
     }
+
+    public List<EmployeeWithCrudDto> getDataByRightJoin(){
+        System.out.println("Get The Data With The Right Join");
+        return employeeDetailsRepository.fetchTheDataByRightJoin();
+    }
 }
