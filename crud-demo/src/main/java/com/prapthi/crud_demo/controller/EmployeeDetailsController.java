@@ -53,5 +53,10 @@ public class EmployeeDetailsController {
         return employeeDetailsService.getDataByInnerJoin();
     }
 
+    public List<EmployeeWithCrudDto> getTheDataByRightJoin(){
+        System.out.println("Get The Data By The Right Join");
+        return employeeDetailsService.getDataByRightJoin();
+    }
+
 
 }
