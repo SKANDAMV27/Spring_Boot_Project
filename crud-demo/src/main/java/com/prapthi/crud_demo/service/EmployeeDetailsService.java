@@ -1,12 +1,14 @@
 package com.prapthi.crud_demo.service;
 
 import com.prapthi.crud_demo.dto.EmployeeDetailsDTO;
+import com.prapthi.crud_demo.dto.EmployeeWithCrudDto;
 import com.prapthi.crud_demo.entity.EmployeeDetailsEntity;
 import com.prapthi.crud_demo.repositry.EmployeeDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -83,5 +85,10 @@ public class EmployeeDetailsService {
     public Optional<EmployeeDetailsEntity> getAll(EmployeeDetailsDTO employeeDetailsDTO, int id){
         System.out.println("Get All The Data");
         return employeeDetailsRepository.findById(id);
+    }
+
+    public List<EmployeeWithCrudDto> getEmployeeWithCrudData(){
+        System.out.println("All The Data ");
+        return employeeDetailsRepository.fetchEmployeeWithCrudDto();
     }
 }
