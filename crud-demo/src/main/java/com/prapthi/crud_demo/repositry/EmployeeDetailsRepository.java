@@ -12,13 +12,13 @@ import java.util.List;
 public interface EmployeeDetailsRepository extends JpaRepository<EmployeeDetailsEntity,Integer> {
 
 
-    @Query("select new com.prapthi.crud_demo.dto.EmployeeWithCrudDto(e.empId, e.emailId ,e.address,e.destination,c.name,c.salary,c.dateOfBirth,c.mobileNumber) From EmployeeDetailsEntity e LEFT JOIN CrudDemoEntity c ON e.empId=c.id")
+    @Query("select new com.prapthi.crud_demo.dto.EmployeeWithCrudDto(e.empId, e.emailId ,e.address,e.destination,c.name,c.salary,c.dateOfBirth,c.mobileNumber) From EmployeeDetailsEntity e LEFT JOIN CrudDemoEntity c ON e.empId=c.id where e.isDeleted=0")
     List<EmployeeWithCrudDto> fetchEmployeeWithCrudDto();
 
-    @Query("select new com.prapthi.crud_demo.dto.EmployeeWithCrudDto(e.empId,e.emailId, e.address,e.destination,c.name,c.salary,c.dateOfBirth,c.mobileNumber) From EmployeeDetailsEntity e INNER JOIN CrudDemoEntity c ON e.empId=c.id")
+    @Query("select new com.prapthi.crud_demo.dto.EmployeeWithCrudDto(e.empId,e.emailId, e.address,e.destination,c.name,c.salary,c.dateOfBirth,c.mobileNumber) From EmployeeDetailsEntity e INNER JOIN CrudDemoEntity c ON e.empId=c.id where e.isDeleted=0")
     List<EmployeeWithCrudDto> fetchTheDataByInnerJoin();
 
-    @Query("select new com.prapthi.crud_demo.dto.EmployeeWithCrudDto(e.empId,e.emailId,e.address,e.destination,c.name,c.salary,c.dateOfBirth,c.mobileNumber) From EmployeeDetailsEntity e RIGHT JOIN CrudDemoEntity c ON e.empId=c.id")
+    @Query("select new com.prapthi.crud_demo.dto.EmployeeWithCrudDto(e.empId,e.emailId,e.address,e.destination,c.name,c.salary,c.dateOfBirth,c.mobileNumber) From EmployeeDetailsEntity e RIGHT JOIN CrudDemoEntity c ON e.empId=c.id where e.isDeleted=0")
     List<EmployeeWithCrudDto> fetchTheDataByRightJoin();
 
 

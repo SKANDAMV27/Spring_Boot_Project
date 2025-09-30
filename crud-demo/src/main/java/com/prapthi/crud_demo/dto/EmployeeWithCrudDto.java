@@ -12,7 +12,7 @@ import java.util.Date;
 public class EmployeeWithCrudDto {
 
 
-        private int empId;
+        private Integer empId;
         private String emailId;
         private String address;
         private String destination;
