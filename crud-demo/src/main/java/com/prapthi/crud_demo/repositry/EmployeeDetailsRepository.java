@@ -15,5 +15,8 @@ public interface EmployeeDetailsRepository extends JpaRepository<EmployeeDetails
     @Query("select new com.prapthi.crud_demo.dto.EmployeeWithCrudDto(e.empId, e.emailId ,e.address,e.destination,c.name,c.salary) From EmployeeDetailsEntity e LEFT JOIN CrudDemoEntity c ON e.empId=c.id")
     List<EmployeeWithCrudDto> fetchEmployeeWithCrudDto();
 
+    @Query("select new com.prapthi.crud_demo.dto.EmployeeWithCrudDto(e.empId,e.emailId, e.address,e.destination,c.name,c.salary) From EmployeeDetailsEntity e INNER JOIN CrudDemoEntity c ON e.empId=c.id")
+    List<EmployeeWithCrudDto> fetchTheDataByInnerJoin();
+
 
 }
