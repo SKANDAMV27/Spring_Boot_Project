@@ -1,11 +1,13 @@
 package com.prapthi.crud_demo.controller;
 
 import com.prapthi.crud_demo.dto.EmployeeDetailsDTO;
+import com.prapthi.crud_demo.dto.EmployeeWithCrudDto;
 import com.prapthi.crud_demo.entity.EmployeeDetailsEntity;
 import com.prapthi.crud_demo.service.EmployeeDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -37,6 +39,12 @@ public class EmployeeDetailsController {
     public Optional<EmployeeDetailsEntity> getAll(@RequestBody EmployeeDetailsDTO employeeDetailsDTO,@PathVariable int id){
         System.out.println("Get The Data By The");
         return employeeDetailsService.getAll(employeeDetailsDTO,id);
+    }
+
+    @GetMapping("/combine")
+    public List<EmployeeWithCrudDto> getEmployeeWithCrudData(){
+        System.out.println("Get The Data of Employee With CRUD Data");
+        return employeeDetailsService.getEmployeeWithCrudData();
     }
 
     }
