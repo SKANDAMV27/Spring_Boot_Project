@@ -19,8 +19,8 @@ public class EmployeeDetailsEntity {
     private int id;
     @Column(name="emp_id")
     private int empId;
-    private String Address;
-    private String Destination;
+    private String address;
+    private String destination;
     private String emailId;
 
     private String CreatedBy;

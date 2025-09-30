@@ -14,8 +14,8 @@ public class EmployeeDetailsDTO {
 
     private int id;
     private int empId;
-    private String Address;
-    private String Destination;
+    private String address;
+    private String destination;
     private String emailId;
 
     private String CreatedBy;
