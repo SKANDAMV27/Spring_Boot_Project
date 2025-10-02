@@ -71,7 +71,12 @@ public class EmployeeDetailsService {
         });
     }
 
-    public Optional<EmployeeDetailsDTO> deleteById(int id,EmployeeDetailsDTO employeeDetailsDTO){
+    public Optional<EmployeeDetailsEntity> deleteById(int id){
+        System.out.println("Data Delete From The Full Table");
+        return employeeDetailsRepository.findById(id);
+    }
+
+    public Optional<EmployeeDetailsDTO> softDeleteById(int id){
         System.out.println("Data Delete By Id");
         return employeeDetailsRepository.findById(id).map(exist-> {
             exist.setIsDeleted(1);
@@ -82,7 +87,7 @@ public class EmployeeDetailsService {
         } );
     }
 
-    public Optional<EmployeeDetailsEntity> getAll(EmployeeDetailsDTO employeeDetailsDTO, int id){
+    public Optional<EmployeeDetailsEntity> getAll(int id){
         System.out.println("Get All The Data");
         return employeeDetailsRepository.findById(id);
     }
@@ -101,4 +106,11 @@ public class EmployeeDetailsService {
         System.out.println("Get The Data With The Right Join");
         return employeeDetailsRepository.fetchTheDataByRightJoin();
     }
+
+    public List<EmployeeWithCrudDto> getDataByFullJoin(){
+        System.out.println("Get The Data By The Full Join");
+        return employeeDetailsRepository.fetchTheDataByFullJoin();
+    }
+
+
 }

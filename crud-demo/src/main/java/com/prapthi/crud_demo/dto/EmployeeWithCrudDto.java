@@ -21,4 +21,7 @@ public class EmployeeWithCrudDto {
         private Date dateOfBirth;
         private Long mobileNumber;
 
+//        private int isDeleted;
+
+
 }

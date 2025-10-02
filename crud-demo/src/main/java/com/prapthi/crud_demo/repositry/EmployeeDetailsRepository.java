@@ -12,7 +12,21 @@ import java.util.List;
 public interface EmployeeDetailsRepository extends JpaRepository<EmployeeDetailsEntity,Integer> {
 
 
-    @Query("select new com.prapthi.crud_demo.dto.EmployeeWithCrudDto(e.empId, e.emailId ,e.address,e.destination,c.name,c.salary,c.dateOfBirth,c.mobileNumber) From EmployeeDetailsEntity e LEFT JOIN CrudDemoEntity c ON e.empId=c.id where e.isDeleted=0")
+    @Query("""
+SELECT new com.prapthi.crud_demo.dto.EmployeeWithCrudDto(
+    e.empId,
+    e.emailId,
+    e.address,
+    e.destination,
+    c.name,
+    c.salary,
+    c.dateOfBirth,
+    c.mobileNumber
+)
+FROM EmployeeDetailsEntity e
+LEFT JOIN CrudDemoEntity c ON e.empId = c.id
+WHERE e.isDeleted = 0 
+""")
     List<EmployeeWithCrudDto> fetchEmployeeWithCrudDto();
 
     @Query("select new com.prapthi.crud_demo.dto.EmployeeWithCrudDto(e.empId,e.emailId, e.address,e.destination,c.name,c.salary,c.dateOfBirth,c.mobileNumber) From EmployeeDetailsEntity e INNER JOIN CrudDemoEntity c ON e.empId=c.id where e.isDeleted=0")
@@ -21,5 +35,6 @@ public interface EmployeeDetailsRepository extends JpaRepository<EmployeeDetails
     @Query("select new com.prapthi.crud_demo.dto.EmployeeWithCrudDto(e.empId,e.emailId,e.address,e.destination,c.name,c.salary,c.dateOfBirth,c.mobileNumber) From EmployeeDetailsEntity e RIGHT JOIN CrudDemoEntity c ON e.empId=c.id where e.isDeleted=0")
     List<EmployeeWithCrudDto> fetchTheDataByRightJoin();
 
-
+    @Query("select new com.prapthi.crud_demo.dto.EmployeeWithCrudDto(e.empId,e.emailId,e.address,e.destination,c.name,c.salary,c.dateOfBirth,c.mobileNumber) From EmployeeDetailsEntity e FULL JOIN CrudDemoEntity c ON e.empId=c.id where e.isDeleted=0")
+    List<EmployeeWithCrudDto> fetchTheDataByFullJoin();
 }

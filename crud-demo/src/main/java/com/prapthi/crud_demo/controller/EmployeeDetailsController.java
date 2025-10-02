@@ -29,16 +29,22 @@ public class EmployeeDetailsController {
         return employeeDetailsService.updated(id,employeeDetailsDTO);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public Optional<EmployeeDetailsDTO> deleteById(@PathVariable int id,@RequestBody EmployeeDetailsDTO employeeDetailsDTO){
-        System.out.println("Delete The Data");
-        return employeeDetailsService.deleteById(id,employeeDetailsDTO);
+    @DeleteMapping("/deleteById/{id}")
+    public Optional<EmployeeDetailsEntity> delete(@PathVariable int id){
+        System.out.println("Delete The Data From The Table");
+        return employeeDetailsService.deleteById(id);
     }
 
-    @GetMapping("getById/{id}")
-    public Optional<EmployeeDetailsEntity> getAll(@RequestBody EmployeeDetailsDTO employeeDetailsDTO,@PathVariable int id){
+    @DeleteMapping("/softDelete/{id}")
+    public Optional<EmployeeDetailsDTO> deleteById(@PathVariable int id){
+        System.out.println("Delete The Data");
+        return employeeDetailsService.softDeleteById(id);
+    }
+
+    @GetMapping("/getById/{id}")
+    public Optional<EmployeeDetailsEntity> getAll(@PathVariable int id){
         System.out.println("Get The Data By The");
-        return employeeDetailsService.getAll(employeeDetailsDTO,id);
+        return employeeDetailsService.getAll(id);
     }
 
     @GetMapping("/leftJoin")
@@ -57,6 +63,12 @@ public class EmployeeDetailsController {
     public List<EmployeeWithCrudDto> getTheDataByRightJoin(){
         System.out.println("Get The Data By The Right Join");
         return employeeDetailsService.getDataByRightJoin();
+    }
+
+    @GetMapping("/fullJoin")
+    public List<EmployeeWithCrudDto> getTheDataByFullJoin(){
+        System.out.println("Get The Data By The Full Join");
+        return employeeDetailsService.getDataByFullJoin();
     }
 
 
