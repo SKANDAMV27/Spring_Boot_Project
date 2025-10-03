@@ -1,10 +1,13 @@
 package com.prapthi.crud_demo.controller;
 
+import com.prapthi.crud_demo.Response.PageResponse;
+import com.prapthi.crud_demo.Response.PageResponse;
 import com.prapthi.crud_demo.dto.EmployeeDetailsDTO;
 import com.prapthi.crud_demo.dto.EmployeeWithCrudDto;
 import com.prapthi.crud_demo.entity.EmployeeDetailsEntity;
 import com.prapthi.crud_demo.service.EmployeeDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -70,6 +73,19 @@ public class EmployeeDetailsController {
         System.out.println("Get The Data By The Full Join");
         return employeeDetailsService.getDataByFullJoin();
     }
+
+    @GetMapping("/search")
+    public PageResponse<EmployeeDetailsDTO> searchEmployee(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "asc") String sortDir,
+            @RequestParam(defaultValue = "") String search
+    ){
+        Page<EmployeeDetailsDTO> result = employeeDetailsService.searchTheEmployee(page, size, sortBy, sortDir, search);
+        return new PageResponse<>(result);
+    }
+
 
 
 }

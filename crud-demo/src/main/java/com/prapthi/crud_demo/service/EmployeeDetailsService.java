@@ -5,6 +5,10 @@ import com.prapthi.crud_demo.dto.EmployeeWithCrudDto;
 import com.prapthi.crud_demo.entity.EmployeeDetailsEntity;
 import com.prapthi.crud_demo.repositry.EmployeeDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -111,6 +115,27 @@ public class EmployeeDetailsService {
         System.out.println("Get The Data By The Full Join");
         return employeeDetailsRepository.fetchTheDataByFullJoin();
     }
+
+    public Page<EmployeeDetailsDTO> searchTheEmployee(int page, int size, String sortBy, String sortDir, String search) {
+        if (search == null || search.isEmpty()) {
+            search = "%"; // Match all records
+        } else {
+            search = "%" + search.toLowerCase() + "%";
+        }
+
+        Sort sort = sortDir.equalsIgnoreCase("desc") ?
+                Sort.by(sortBy).descending() :
+                Sort.by(sortBy).ascending();
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        Page<EmployeeDetailsEntity> entityPage = employeeDetailsRepository.searchTheEmployee(search, pageable);
+
+        return entityPage.map(this::detailsDTO);
+    }
+
+
+
 
 
 }
