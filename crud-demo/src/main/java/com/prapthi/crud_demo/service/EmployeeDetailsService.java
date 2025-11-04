@@ -118,7 +118,7 @@ public class EmployeeDetailsService {
 
     public Page<EmployeeDetailsDTO> searchTheEmployee(int page, int size, String sortBy, String sortDir, String search) {
         if (search == null || search.isEmpty()) {
-            search = "%"; // Match all records
+            search = "%";
         } else {
             search = "%" + search.toLowerCase() + "%";
         }
@@ -127,12 +127,14 @@ public class EmployeeDetailsService {
                 Sort.by(sortBy).descending() :
                 Sort.by(sortBy).ascending();
 
+
         Pageable pageable = PageRequest.of(page, size, sort);
 
         Page<EmployeeDetailsEntity> entityPage = employeeDetailsRepository.searchTheEmployee(search, pageable);
 
         return entityPage.map(this::detailsDTO);
     }
+
 
 
 

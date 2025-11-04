@@ -43,13 +43,14 @@ WHERE e.isDeleted = 0
 
 
     @Query("""
-        SELECT e FROM EmployeeDetailsEntity e
-        WHERE e.isDeleted = 0 
-          AND (LOWER(e.emailId) LIKE LOWER(:search)
-               OR LOWER(e.address) LIKE LOWER(:search)
-               OR LOWER(e.destination) LIKE LOWER(:search))
-    """)
+    SELECT e FROM EmployeeDetailsEntity e
+    WHERE e.isDeleted = 0 
+      AND (LOWER(e.emailId) LIKE :search
+           OR LOWER(e.address) LIKE :search
+           OR LOWER(e.destination) LIKE :search)
+""")
     Page<EmployeeDetailsEntity> searchTheEmployee(@Param("search") String search, Pageable pageable);
+
 }
 
 

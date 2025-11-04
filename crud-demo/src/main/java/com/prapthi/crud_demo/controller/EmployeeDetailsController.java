@@ -79,13 +79,13 @@ public class EmployeeDetailsController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size,
             @RequestParam(defaultValue = "id") String sortBy,
-            @RequestParam(defaultValue = "asc") String sortDir,
+            @RequestParam(defaultValue = "desc") String sortDir,
             @RequestParam(defaultValue = "") String search
     ){
+
         Page<EmployeeDetailsDTO> result = employeeDetailsService.searchTheEmployee(page, size, sortBy, sortDir, search);
         return new PageResponse<>(result);
     }
-
 
 
 }
