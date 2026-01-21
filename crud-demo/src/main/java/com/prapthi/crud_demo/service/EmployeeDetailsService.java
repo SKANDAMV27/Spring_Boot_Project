@@ -123,7 +123,7 @@ public class EmployeeDetailsService {
             search = "%" + search.toLowerCase() + "%";
         }
 
-        Sort sort = sortDir.equalsIgnoreCase("desc") ?
+        Sort sort = sortDir.equalsIgnoreCase("acs") ?
                 Sort.by(sortBy).descending() :
                 Sort.by(sortBy).ascending();
 

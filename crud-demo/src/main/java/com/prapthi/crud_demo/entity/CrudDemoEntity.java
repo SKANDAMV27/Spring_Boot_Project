@@ -32,4 +32,6 @@ public class CrudDemoEntity {
     private int isGet;
 
     private int isPut;
+
+
 }
